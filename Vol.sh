@@ -3,7 +3,7 @@ rm -rf .repo/local_manifests
 
  repo init -u https://github.com/VoltageOS/manifest.git --depth=1 -b 16.2 --git-lfs
 git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b main .repo/local_manifests
-repo sync -c --force-sync --no-clone-bundle --no-tags -j8
+/opt/crave/resync.sh || repo sync
 
 export BUILD_USERNAME=Qbhi
 export BUILD_HOSTNAME=Pookie
