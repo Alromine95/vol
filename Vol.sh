@@ -5,8 +5,8 @@ rm -rf .repo/local_manifests
 git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b main .repo/local_manifests
 /opt/crave/resync.sh || repo sync
 
-export BUILD_USERNAME=Qbhi
-export BUILD_HOSTNAME=Pookie
+export BUILD_USERNAME=Abhinav
+export BUILD_HOSTNAME=foss
 
 . build/envsetup.sh
 # run
