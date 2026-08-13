@@ -3,7 +3,8 @@ rm -rf .repo/local_manifests;
 
  repo init -u https://github.com/VoltageOS/manifest.git --depth=1 -b 16.2 --git-lfs;
  
-git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b main .repo/local_manifests
+git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b main .repo/local_manifests;
+
 /opt/crave/resync.sh;
 
 export BUILD_USERNAME=Abhinav
