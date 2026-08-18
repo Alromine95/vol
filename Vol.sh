@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -rf .repo/local_manifests;
 
- repo init -u https://github.com/VoltageOS/manifest.git --depth=1 -b 16.2 --git-lfs;
+repo init -u https://github.com/SuperiorOS/manifest.git -b 16.2 --depth=1 --git-lfs
  
 git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b main .repo/local_manifests;
 
@@ -10,11 +10,7 @@ git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b m
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
-. build/envsetup.sh
-# run
-
-make installclean
-brunch blossom
+./build-superior.sh blossom -j8
 
 echo "Upload to GoFile will be started..."
 
