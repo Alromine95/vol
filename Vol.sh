@@ -1,5 +1,6 @@
 #!/bin/bash
 rm -rf .repo/local_manifests;
+rm -rf out/soong;
 
 repo init -u https://github.com/SuperiorOS/manifest.git -b 16.2 --depth=1 --git-lfs
  
