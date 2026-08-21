@@ -11,7 +11,6 @@ git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b m
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
-make clean;
 ./build-superior.sh blossom -j4;
 
 echo "Upload to GoFile will be started..."
