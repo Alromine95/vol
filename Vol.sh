@@ -8,8 +8,12 @@ git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b m
 
 /opt/crave/resync.sh;
 
+sudo apt-get update && sudo apt-get install patchelf coreutils -y;
+
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
+
+rm -rf build/soong/fsgen;
 
 ./build-superior.sh blossom -j4;
 
