@@ -2,7 +2,7 @@
 rm -rf .repo/local_manifests;
 
 
-repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs
+repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
  
 git clone https://github.com/Alromine95/android_local_manifests_blossom.git -b main .repo/local_manifests;
 
@@ -15,7 +15,9 @@ export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
 
-./build-superior.sh blossom -j4;
+. build/envsetup.sh
+lunch lineage_blossom-bp2a-userdebug
+mka orion -j$(nproc --all);
 
 echo "Upload to GoFile will be started..."
 
