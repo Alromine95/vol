@@ -4,7 +4,7 @@ rm -rf .repo/local_manifests;
 
 repo init -u https://github.com/OrionOS-Project/manifest -b bka --git-lfs;
  
-git clone https://github.com/Alromine95/local_manifests_blossom.git -b lineage-23.0 .repo/local_manifests;
+git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
 
 /opt/crave/resync.sh;
 
