@@ -14,6 +14,7 @@ export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
+rm -rf out/soong/.intermediates/build/soong/system-build.prop;
 
 . build/envsetup.sh;
 lunch lineage_blossom-bp2a-userdebug;
