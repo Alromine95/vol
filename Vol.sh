@@ -13,6 +13,8 @@ export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
 
+echo "build started!..."
+
 . build/envsetup.sh;
 lunch lineage_blossom-bp2a-user;
 mka derp;
