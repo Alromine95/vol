@@ -2,10 +2,8 @@
 rm -rf .repo/local_manifests;
 
 
-repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
+repo init -u https://github.com/DerpFest-AOSP/android_manifest.git -b 16 --depth=1 --git-lfs;
  
-git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
-
 /opt/crave/resync.sh;
 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
@@ -14,7 +12,6 @@ export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
-rm -rf out/soong/.intermediates/build/soong/system-build.prop/android_common/build.prop;
 
 . build/envsetup.sh;
 lunch lineage_blossom-bp2a-userdebug;
