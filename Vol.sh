@@ -9,7 +9,7 @@ rm -rf hardware/qcom-caf/msm8996;
 rm -rf hardware/qcom-caf/common;
 
 
-repo init -u https://github.com/DerpFest-AOSP/android_manifest.git -b 16 --depth=1 --git-lfs;
+repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
 git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
 /opt/crave/resync.sh;
 
