@@ -10,6 +10,7 @@ rm -rf hardware/qcom-caf/common;
 
 
 repo init -u https://github.com/DerpFest-AOSP/android_manifest.git -b 16 --depth=1 --git-lfs;
+git clone https://github.com/Alromine95/Local-manifest.git -b main 
  
 /opt/crave/resync.sh;
 
