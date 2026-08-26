@@ -14,8 +14,8 @@ export BUILD_HOSTNAME=foss
 rm -rf build/soong/fsgen;
 
 . build/envsetup.sh;
-lunch lineage_blossom-bp2a-userdebug;
-mka orion -j$(nproc --all);
+lunch lineage_blossom-bp2a-user;
+mka derp;
 
 echo "Upload to GoFile will be started..."
 
