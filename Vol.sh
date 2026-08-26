@@ -1,5 +1,12 @@
 #!/bin/bash
-rm -rf .repo/local_manifests;
+
+
+
+rm -rf .repo/local_manifests/
+rm -rf device/lge vendor/lineage-priv/keys
+rm -rf vendor/lge/msm8996-common kernel/lge/msm8996
+rm -rf hardware/qcom-caf/msm8996
+rm -rf hardware/qcom-caf/common 
 
 
 repo init -u https://github.com/DerpFest-AOSP/android_manifest.git -b 16 --depth=1 --git-lfs;
