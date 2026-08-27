@@ -38,7 +38,7 @@ echo "======= Export Done ======"
 echo "============="
 
 # Lunch
-lunch orion_blossom-bpa-userdebug
+lunch orion_blossom-trunk_staging-userdebug
 
 # Build
 make orion -j$(nproc --all)
