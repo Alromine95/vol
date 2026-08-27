@@ -3,7 +3,7 @@
 rm -rf .repo/local_manifests/
 
 # repo init rom
-repo init -u https://github.com/OrionOS-Project/manifest -b vic --git-lfs
+repo init -u https://github.com/OrionOS-Project/manifest -b vic --depth=1 --git-lfs
 echo "=================="
 echo "Repo init success"
 echo "=================="
