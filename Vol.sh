@@ -14,7 +14,7 @@ git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_m
 /opt/crave/resync.sh;
 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
-
+echo 'type mitee_client_device, dev_type;' >> device/xiaomi/blossom/sepolicy/vendor/device.te;
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
