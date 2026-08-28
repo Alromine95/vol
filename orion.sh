@@ -3,6 +3,7 @@
 
 
 rm -rf .repo/local_manifests;
+rm -rf out/soong/.intermediates/system/sepolicy;
 
 
 repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
