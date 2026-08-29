@@ -33,6 +33,8 @@ export BUILD_HOSTNAME=crave
 export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 echo "======= Export Done ======"
 
+rm -rf build/soong/fsgen;
+
 # Set up build environment
 ./build-superior.sh blossom -j4
 echo "============="
