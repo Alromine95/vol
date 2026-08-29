@@ -7,7 +7,7 @@ rm -rf out/soong/.intermediates/system/sepolicy;
 
 
 repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
-git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
+git clone https://gitlab.com/haikito18/local_manifest_blossom.git -b A16 .repo/local_manifests;
 /opt/crave/resync.sh;
 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
