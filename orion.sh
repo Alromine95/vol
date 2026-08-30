@@ -21,7 +21,7 @@ rm -rf build/soong/fsgen;
 echo "build started!..."
 
 . build/envsetup.sh;
-lunch lineage_blossom-bp2a-userdebug;
+lunch lineage_blossom-bp2a-eng;
 mka orion -j$(nproc --all);
 
 echo "Upload to GoFile will be started..."
