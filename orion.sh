@@ -12,7 +12,7 @@ echo "      Repo init      "
 echo "====================="
 
 repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
-git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
+git clone https://github.com/HaiKito18/Blossom_local_mainfest.git -b A16 .repo/local_manifests;
 
 echo "==================="
 echo "     repo sync     "
