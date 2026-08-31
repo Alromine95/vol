@@ -1,17 +1,27 @@
 #!/bin/bash
 
-
+echo "========================"
+echo "removing local manifests"
+echo "========================"
 
 rm -rf .repo/local_manifests;
 rm -rf out/soong/.intermediates/system/sepolicy;
 
+echo "====================="
+echo "      Repo init      "
+echo "====================="
 
 repo init -u https://github.com/OrionOS-Project/manifest -b bka --depth=1 --git-lfs;
 git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
+
+echo "==================="
+echo "     repo sync     "
+echo "==================="
+
 /opt/crave/resync.sh;
 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
-echo 'type mitee_client_device, dev_type;' >> device/xiaomi/blossom/sepolicy/vendor/device.te;
+
 
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
