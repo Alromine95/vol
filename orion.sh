@@ -27,6 +27,7 @@ export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
+sed -i 's|</permissions>|<privapp-permissions package="com.google.android.deskclock">\n<permission name="android.permission.CONTROL_DISPLAY_COLOR_TRANSFORMS"/>\n<permission name="android.permission.START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>\n</privapp-permissions>\n</permissions>|' vendor/lineage/prebuilt/common/etc/permissions/product-privapp-permissions-aosp.xml
 
 echo "build started!..."
 
