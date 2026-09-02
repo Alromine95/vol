@@ -42,5 +42,5 @@ echo "======= Export Done ======"
 rm -rf build/soong/fsgen;
 
 # Set up build environment
-./build-superior.sh blossom -j4
+./build-superior.sh blossom -j8
 echo "============="
