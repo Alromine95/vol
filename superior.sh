@@ -1,7 +1,5 @@
 #!/bin/bash
 
-rm -rf .repo/local_manifests/
-
 # repo init rom
 repo init -u https://github.com/SuperiorOS/manifest.git -b sixteen-los --depth=1 --git-lfs
 echo "=================="
