@@ -39,7 +39,7 @@ fi
 echo "build started!..."
 
 . build/envsetup.sh;
-lunch lineage_blossom-bp2a-eng;
+lunch lineage_blossom-bp2a-userdebug;
 mka orion -j$(nproc --all);
 
 echo "Upload to GoFile will be started..."
