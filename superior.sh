@@ -9,13 +9,13 @@ echo "Repo init success"
 echo "=================="
 
 # Local manifests
-git clone https://gitlab.com/haikito18/local_manifest_blossom.git -b A16 .repo/local_manifests
+git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests
 echo "============================"
 echo "Local manifest clone success"
 echo "============================"
 
 # Build Sync
-/opt/crave/resync.sh
+repo sync -c --no-clone-bundle -j12
 echo "============="
 echo "Sync success"
 echo "============="
