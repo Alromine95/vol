@@ -22,11 +22,18 @@ echo "==================="
 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
 
-
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
+
+XML=vendor/lineage/prebuilt/common/etc/permissions/product-privapp-permissions-aosp.xml
+if ! grep -q "com.google.android.deskclock" "$XML"; then
+  sed -i 's|</permissions>|<privapp-permissions package="com.google.android.deskclock">\n<permission name="android.permission.CONTROL_DISPLAY_COLOR_TRANSFORMS"/>\n<permission name="android.permission.START_FOREGROUND_SERVICES_FROM_BACKGROUND"/>\n</privapp-permissions>\n</permissions>|' "$XML"
+  echo "Patched privapp-permissions XML"
+else
+  echo "privapp-permissions XML already patched, skipping"
+fi
 
 echo "build started!..."
 
