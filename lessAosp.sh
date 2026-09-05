@@ -31,7 +31,7 @@ rm -rf build/soong/fsgen;
 echo "build started!..."
 
 source build/envsetup.sh ;
-lunch yaap_device-user && m yaap ;
+lunch yaap_blossom-user && m yaap ;
 
 echo "Upload to GoFile will be started..."
 
