@@ -11,7 +11,8 @@ echo "====================="
 echo "      Repo init      "
 echo "====================="
 
-repo init -u https://github.com/LESSAOSP/manifest.git -b 16 --git-lfs --depth=1;
+repo init -u https://github.com/yaap/manifest.git -b sixteen --depth=1 --git-lfs;
+
 git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
 
 echo "==================="
