@@ -30,11 +30,8 @@ rm -rf build/soong/fsgen;
 
 echo "build started!..."
 
-make installclean
-
-. build/envsetup.sh;
-lunch lessaosp_blossom-bp2a-userdebug;
-make bacon -j$(nproc --all);
+source build/envsetup.sh ;
+lunch yaap_device-user && m yaap ;
 
 echo "Upload to GoFile will be started..."
 
