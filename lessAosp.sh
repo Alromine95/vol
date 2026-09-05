@@ -29,6 +29,8 @@ rm -rf build/soong/fsgen;
 
 echo "build started!..."
 
+make installclean
+
 . build/envsetup.sh;
 lunch lessaosp_blossom-bp2a-userdebug;
 make bacon -j$(nproc --all);
