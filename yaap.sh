@@ -28,10 +28,12 @@ export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
 
-# Fix Go compatibility issue in execution_metrics.go
+# 1. Symlink vendor/lineage to vendor/yaap so envsetup.sh finds the expected paths
+ln -sfn vendor/lineage vendor/yaap
+
+# 2. Patch the Go 1.23+ incompatibility in execution_metrics.go
 sed -i 's/slices.Sorted/sort.Strings/g' build/soong/ui/execution_metrics/execution_metrics.go
 
-ln -sfn vendor/lineage vendor/yaap
 
 echo "build started!..."
 
