@@ -6,7 +6,7 @@ echo "========================"
 
 rm -rf .repo/local_manifests;
 rm -rf out/soong/.intermediates/system/sepolicy;
-rm -rf vendor/lineage
+rm -rf vendor/lineage;
 
 echo "====================="
 echo "      Repo init      "
