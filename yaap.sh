@@ -5,10 +5,11 @@ echo "removing local manifests"
 echo "========================"
 
 rm -rf .repo/local_manifests;
+rm -rf .repo;
 rm -rf out/soong/.intermediates/system/sepolicy;
 rm -rf vendor/lineage;
-rm -rf build/make
-rm -rf build/soong
+rm -rf build/make;
+rm -rf build/soong;
 
 echo "====================="
 echo "      Repo init      "
