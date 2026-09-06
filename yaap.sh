@@ -6,6 +6,7 @@ echo "========================"
 
 rm -rf .repo/local_manifests;
 rm -rf out/soong/.intermediates/system/sepolicy;
+rm -rf vendor/lineage
 
 echo "====================="
 echo "      Repo init      "
@@ -27,9 +28,6 @@ export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
-
-# 1. Symlink vendor/lineage to vendor/yaap so envsetup.sh finds the expected paths
-ln -sfn vendor/lineage vendor/yaap
 
 # 2. Patch Go 1.23+ incompatibilities in execution_metrics.go
 sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
