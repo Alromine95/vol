@@ -31,8 +31,9 @@ rm -rf build/soong/fsgen;
 # 1. Symlink vendor/lineage to vendor/yaap so envsetup.sh finds the expected paths
 ln -sfn vendor/lineage vendor/yaap
 
-# 2. Patch the Go 1.23+ incompatibility in execution_metrics.go
-sed -i 's/slices.Sorted/sort.Strings/g' build/soong/ui/execution_metrics/execution_metrics.go
+# 2. Patch Go 1.23+ incompatibilities in execution_metrics.go
+sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
+sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' build/soong/ui/execution_metrics/execution_metrics.go
 
 
 echo "build started!..."
