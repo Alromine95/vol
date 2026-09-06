@@ -28,6 +28,9 @@ export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
 
+# Fix Go compatibility issue in execution_metrics.go
+sed -i 's/slices.Sorted/sort.Strings/g' build/soong/ui/execution_metrics/execution_metrics.go
+
 echo "build started!..."
 
 source build/envsetup.sh ;
