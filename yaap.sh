@@ -40,7 +40,7 @@ sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([
 echo "build started!..."
 
 source build/envsetup.sh ;
-lunch yaap_blossom-bp4a-userdebug ;
+lunch yaap_blossom-bp2a-userdebug ;
 m installclean ;
 m yaap ;
 
