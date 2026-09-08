@@ -5,6 +5,7 @@ echo "removing local manifests"
 echo "========================"
 
 rm -rf .repo/local_manifests;
+rm -rf .repo
 
 echo "====================="
 echo "      Repo init      "
