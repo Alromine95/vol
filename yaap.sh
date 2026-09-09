@@ -30,7 +30,7 @@ rm -rf build/soong/fsgen;
 
 # Clone Soong
 rm -rf build/soong
-git clone https://github.com/yaap-17-stone/build_soong.git -b sixteen build/soong
+git clone https://github.com/yaap/build_soong.git -b sixteen build/soong
 
 # 2. Patch Go 1.23+ incompatibilities in execution_metrics.go
 sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
