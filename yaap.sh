@@ -22,6 +22,11 @@ echo "==================="
 
 /opt/crave/resync.sh;
 
+repo sync -c --force-sync --force-remove-dirty --no-clone-bundle --no-tags;
+
+
+/opt/crave/resync.sh;
+
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
 
 export BUILD_USERNAME=Abhinav
