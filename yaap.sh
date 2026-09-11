@@ -34,10 +34,6 @@ export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
 
-# Clone Soong
-rm -rf build/soong
-git clone https://github.com/yaap/build_soong.git -b sixteen build/soong
-
 # 2. Patch Go 1.23+ incompatibilities in execution_metrics.go
 sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
 sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' build/soong/ui/execution_metrics/execution_metrics.go
