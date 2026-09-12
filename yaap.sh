@@ -20,8 +20,9 @@ echo "==================="
 echo "     repo sync     "
 echo "==================="
 
+/opt/crave/resync.sh
 
-repo sync -c --force-sync --force-remove-dirty --no-clone-bundle --no-tags
+repo sync --force-sync
 
 /opt/crave/resync.sh
 
