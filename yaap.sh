@@ -144,6 +144,8 @@ sync_repositories() {
     sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
     sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' build/soong/ui/execution_metrics/execution_metrics.go
 
+    echo "==========I AM REMOVING PREBUILTS MAUAHAHAHAHAHAHA============"
+    rm -rf prebuilts/gcc prebuilts/clang
 }
 
 # ==========================================
