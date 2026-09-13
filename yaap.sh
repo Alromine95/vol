@@ -143,6 +143,10 @@ sync_repositories() {
     echo "🔧 Patching Go compat issue in execution_metrics.go..."
     sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
     sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' build/soong/ui/execution_metrics/execution_metrics.go
+
+    # Remove legacy GCC 4.9 ARM toolchain (dev suggestion)
+    echo "🔧 Removing legacy GCC 4.9 prebuilt toolchain..."
+    rm -rf prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9
 }
 
 # ==========================================
