@@ -133,9 +133,6 @@ sync_repositories() {
         /opt/crave/resync.sh
     fi
 
-    # Known YAAP sepolicy conflict fix
-    echo "🔧 Fixing genfscon /class/typec conflict for YAAP..."
-    find device/qcom/sepolicy_vndr -name "genfs_contexts" -exec sed -i '/genfscon sysfs \/class\/typec/d' {} + 2>/dev/null || true
 
     # Go 1.23+ compat fix for build/soong (apply AFTER repo sync gives us
     # a properly repo-managed build/soong — do NOT manually re-clone it,
