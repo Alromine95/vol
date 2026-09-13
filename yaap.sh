@@ -119,7 +119,7 @@ sync_repositories() {
     fi
 
     for i in {1..3}; do
-        repo sync -c -j16 --force-sync --force-remove-dirty --no-clone-bundle --no-tags && break || {
+        repo sync --force-sync && break || {
             if [ $i -eq 3 ]; then
                 echo "❌ Repo sync failed after 3 attempts."
                 handle_error $LINENO
