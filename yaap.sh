@@ -125,6 +125,7 @@ sync_repositories() {
     echo "🚀 Repo init"
     echo "=========================================="
     rm -rf .repo
+    rm -rf TMP_PATCHES
     repo init -u "$REPO_INIT_URL" -b "$REPO_INIT_BRANCH" --git-lfs --depth=1
 
     echo "📄 Cloning local manifest..."
