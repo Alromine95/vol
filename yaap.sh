@@ -141,15 +141,20 @@ sync_repositories() {
     # Go 1.23+ compat fix for build/soong (apply AFTER repo sync gives us
     # a properly repo-managed build/soong — do NOT manually re-clone it,
     # that caused "unsupported checkout state" corruption previously)
-    echo "🔧 Patching Go compat issue in execution_metrics.go..."
-
     SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
 
-    if ! grep -q '"sort"' "$SOONG_FILE"; then
-    sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
-    fi
+if [ ! -f "$SOONG_FILE" ]; then
+    echo "❌ Soong execution_metrics.go not found!"
+    exit 1
+fi
 
-    sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
+echo "🔧 Patching Go compat issue in execution_metrics.go..."
+
+if ! grep -q '"sort"' "$SOONG_FILE"; then
+    sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
+fi
+
+sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
 }
 
 # ==========================================
