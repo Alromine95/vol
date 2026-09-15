@@ -37,6 +37,25 @@ set -eE
 set -o pipefail
 
 # ==========================================
+# 🔧 Required host dependencies
+# ==========================================
+if ! command -v patchelf >/dev/null 2>&1; then
+    echo "🔧 Installing patchelf..."
+    sudo apt-get update
+    sudo apt-get install -y patchelf
+else
+    echo "✅ patchelf already installed"
+fi
+
+if ! command -v protoc >/dev/null 2>&1; then
+    echo "🔧 Installing protobuf..."
+    sudo apt-get update
+    sudo apt-get install -y protobuf-compiler
+else
+    echo "✅ protobuf already installed: $(protoc --version)"
+fi
+
+# ==========================================
 # 📨 Error Trap — this is the key upgrade:
 # stops the script immediately on ANY failing
 # command, prints the exact line number, and
@@ -142,12 +161,10 @@ sync_repositories() {
 
     SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
 
-    # Add sort import if missing
     if ! grep -q '"sort"' "$SOONG_FILE"; then
     sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
     fi
 
-    # Replace slices.Sorted(maps.Keys(...)) for older Go compatibility
     sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
 }
 
