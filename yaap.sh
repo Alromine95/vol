@@ -139,10 +139,16 @@ sync_repositories() {
     # a properly repo-managed build/soong — do NOT manually re-clone it,
     # that caused "unsupported checkout state" corruption previously)
     echo "🔧 Patching Go compat issue in execution_metrics.go..."
-    sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
-    sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' build/soong/ui/execution_metrics/execution_metrics.go
-    sed -i '/^import (/a\    "sort"' build/soong/ui/execution_metrics/execution_metrics.go
-    
+
+    SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
+
+    # Add sort import if missing
+    if ! grep -q '"sort"' "$SOONG_FILE"; then
+    sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
+    fi
+
+    # Replace slices.Sorted(maps.Keys(...)) for older Go compatibility
+    sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
 }
 
 # ==========================================
