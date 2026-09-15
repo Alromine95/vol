@@ -135,25 +135,8 @@ sync_repositories() {
     echo "=========================================="
     echo "🚀 Repo sync (with retry + force-remove-dirty)"
     echo "=========================================="
-    if [ -f /opt/crave/resync.sh ]; then
-        /opt/crave/resync.sh
-    fi
-
-    for i in {1..3}; do
-        repo sync --force-sync && break || {
-            if [ $i -eq 3 ]; then
-                echo "❌ Repo sync failed after 3 attempts."
-                handle_error $LINENO
-            fi
-            echo "⚠️ repo sync failed, retrying in 30 seconds... ($i/3)"
-            sleep 30
-        }
-    done
-
-    if [ -f /opt/crave/resync.sh ]; then
-        /opt/crave/resync.sh
-    fi
-
+    
+   curl -sf https://raw.githubusercontent.com/xc112lg/lg_releases/refs/heads/main/resync.sh | bash
 
     # Go 1.23+ compat fix for build/soong (apply AFTER repo sync gives us
     # a properly repo-managed build/soong — do NOT manually re-clone it,
