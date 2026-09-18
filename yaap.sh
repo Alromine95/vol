@@ -146,6 +146,18 @@ sync_repositories() {
 
    mkdir -p device/xiaomi/blossom-kernel/modules
 
+   
+    # ========================================================
+    # 🔧 Fix select() condition string/bool mismatch in Audio
+    # ========================================================
+    AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
+    if [ -f "$AUDIO_BP" ]; then
+        echo " 🔧 Fixing Audio select type condition..."
+        sed -i 's/"true":/true:/g' "$AUDIO_BP"
+    fi
+
+   
+
     # Go 1.23+ compat fix for build/soong (apply AFTER repo sync gives us
     # a properly repo-managed build/soong — do NOT manually re-clone it,
     # that caused "unsupported checkout state" corruption previously)
