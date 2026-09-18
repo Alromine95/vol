@@ -140,7 +140,7 @@ sync_repositories() {
 
    # add blossom kernek modules#
    #===========================#
-   echo "======================#
+   echo "======================"
    echo "  making modules dir  "
    echo "======================"
 
