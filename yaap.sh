@@ -10,6 +10,7 @@ START_TIME=$(date +%s)
 LOG_FILE="build_${DEVICE}_$(date +%Y%m%d_%H%M).log"
 rm -f "/tmp/build_failed.lock"
 
+export IGNORE_PATCH_ERRORS=true
 export BUILD_USERNAME="Abhinav"
 if [ -d "/opt/crave" ]; then
     export BUILD_HOSTNAME="crave"
