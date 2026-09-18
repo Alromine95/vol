@@ -138,6 +138,14 @@ sync_repositories() {
     
    curl -sf https://raw.githubusercontent.com/xc112lg/lg_releases/refs/heads/main/resync.sh | bash
 
+   # add blossom kernek modules#
+   #===========================#
+   echo "======================#
+   echo "  making modules dir  "
+   echo "======================"
+
+   mkdir -p device/xiaomi/blossom-kernel/modules
+
     # Go 1.23+ compat fix for build/soong (apply AFTER repo sync gives us
     # a properly repo-managed build/soong — do NOT manually re-clone it,
     # that caused "unsupported checkout state" corruption previously)
