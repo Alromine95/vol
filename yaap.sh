@@ -163,6 +163,12 @@ sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([
 compile_rom() {
     export TZ="Asia/Kolkata"
 
+    SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
+    if ! grep -q '"sort"' "$SOONG_FILE"; then
+        sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
+        sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
+    fi
+
     set +eE
     rm -rf out/.soong
     source build/envsetup.sh
