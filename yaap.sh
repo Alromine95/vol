@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf .repo/local_manifests/
+rm -rf .repo/local_manifests
 
 # repo init rom
 repo init -u https://github.com/yaap/manifest.git -b sixteen --depth=1 --git-lfs
@@ -15,14 +15,14 @@ echo "Local manifest clone success"
 echo "============================"
 
 # Build Sync
-repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune --retry-fetches=5 -j$(nproc --all)
+curl -sf https://raw.githubusercontent.com/xc112lg/lg_releases/refs/heads/main/resync.sh | bash
 echo "============="
 echo "Sync success"
 echo "============="
 
 # Installing packages 
 sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32readline-dev lib32z1-dev liblz4-tool libncurses6 libncurses-dev libsdl1.2-dev libssl-dev libwxgtk3.2-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev -y ;
-sudo apt-get update && sudo apt-get install patchelf coreutils -y
+sudo apt-get update && sudo apt-get install patchelf coreutils -y ;
 echo "============="
 echo "packages done"
 echo "============="
