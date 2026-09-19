@@ -40,6 +40,9 @@ SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"; git checkout
 #Making kernel modules dir
 mkdir -p device/xiaomi/blossom-kernel/modules
 
+#Fixing audio files
+AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"; [ -f "$AUDIO_BP" ] && (echo "🔧 Fixing Audio select type condition..."; sed -i 's/"true":/true:/g' "$AUDIO_BP"; echo "✅ Audio Android.bp patched!") || echo "⚠️ Audio Android.bp not found, skipping patch."
+
 # Set up build environment
 source build/envsetup.sh
 echo "============="
