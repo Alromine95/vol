@@ -35,7 +35,6 @@ echo "======= Export Done ======"
 
 #Fixing patchs
 set +e
-curl -sf https://githubusercontent.com | bash
 git -C frameworks/av am --abort 2>/dev/null
 git -C frameworks/base am --abort 2>/dev/null
 git -C hardware/interfaces am --abort 2>/dev/null
