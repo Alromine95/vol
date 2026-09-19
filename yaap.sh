@@ -21,7 +21,7 @@ echo "Sync success"
 echo "============="
 
 # Installing packages 
-sudo apt-get update && sudo apt-get install patchelf coreutils protobuf-compiler libprotobuf-dev -y ;
+sudo apt-get update && sudo apt-get install patchelf coreutils protobuf-compiler libprotobuf-dev -y 
 echo "============="
 echo "packages done"
 echo "============="
