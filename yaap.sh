@@ -39,6 +39,8 @@ git -C frameworks/av am --abort 2>/dev/null
 git -C frameworks/base am --abort 2>/dev/null
 git -C hardware/interfaces am --abort 2>/dev/null
 git -C packages/modules/Bluetooth am --abort 2>/dev/null
+git -C build/soong am --abort 2>/dev/null
+git -C system/sepolicy am --abort 2>/dev/null
 set -e
 
 #Go fix
