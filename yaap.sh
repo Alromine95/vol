@@ -23,7 +23,7 @@ echo "============================"
 
 /opt/crave/resync.sh;
 
-repo sync --force-sync --remove-dirty;
+repo sync --force-sync --force-remove-dirty;
 
 
 echo "============="
