@@ -22,7 +22,7 @@ echo "============================"
 
 /opt/crave/resync.sh
 
-repo sync -c --force-sync --force-remove-dirty --no-clone-bundle --no-tags
+repo sync -c --force-sync 
 
 
 /opt/crave/resync.sh
