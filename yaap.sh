@@ -21,7 +21,9 @@ echo "============================"
 # Build Sync
 
 
-repo sync -j1 --fail-fast
+/opt/crave/resync.sh;
+
+repo sync --force-sync --remove-dirty;
 
 
 echo "============="
