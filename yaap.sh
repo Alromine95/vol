@@ -21,7 +21,7 @@ echo "============================"
 # Build Sync
 
 
-repo sync -c -j4 --fail-fast
+repo sync -j1 --fail-fast
 
 
 echo "============="
