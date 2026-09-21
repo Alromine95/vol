@@ -43,7 +43,6 @@ export IGNORE_PATCH_ERRORS=true
 echo "======= Export Done ======"
 
 #Fixing patchs
-#Fixing patchs
 git -C frameworks/av am --abort 2>/dev/null || true
 git -C frameworks/base am --abort 2>/dev/null || true
 git -C hardware/interfaces am --abort 2>/dev/null || true
@@ -71,6 +70,8 @@ else
     echo "⚠️ $SOONG_FILE not found, skipping Go patch."
 fi
 
+echo "=======soong fix done========"
+
 #Making kernel modules dir
 mkdir -p device/xiaomi/blossom-kernel/modules
 
@@ -83,6 +84,8 @@ if [ -f "$AUDIO_BP" ]; then
 else
     echo "⚠️ Audio Android.bp not found, skipping patch."
 fi
+
+echo "=======audio fix done========="
 
 # Set up build environment
 source build/envsetup.sh
