@@ -52,13 +52,39 @@ git -C build/soong am --abort 2>/dev/null || true
 git -C system/sepolicy am --abort 2>/dev/null || true
 
 #Go fix
-SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"; git checkout -- "$SOONG_FILE" 2>/dev/null || true; [ -f "$SOONG_FILE" ] && (echo "🔧 Re-patching execution_metrics.go safely..."; grep -q '"sort"' "$SOONG_FILE" || sed -i '/^import (/a\    "sort"' "$SOONG_FILE"; sed -i '/"maps"/d; /"slices"/d' "$SOONG_FILE"; sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"; echo "✅ Fixed and patched successfully!") || echo "❌ Soong execution_metrics.go not found!"
+
+SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
+
+if [ -f "$SOONG_FILE" ]; then
+    echo "🔧 Re-patching execution_metrics.go safely..."
+
+    git checkout -- "$SOONG_FILE" 2>/dev/null  true
+
+    grep -q '"sort"' "$SOONG_FILE"  \
+        sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
+
+    sed -i '/"maps"/d; /"slices"/d' "$SOONG_FILE"
+
+    sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
+
+    echo "✅ Fixed and patched successfully!"
+else
+    echo "⚠️ $SOONG_FILE not found, skipping Go patch."
+fi
 
 #Making kernel modules dir
 mkdir -p device/xiaomi/blossom-kernel/modules
 
 #Fixing audio files
-AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"; [ -f "$AUDIO_BP" ] && (echo "🔧 Fixing Audio select type condition..."; sed -i 's/"true":/true:/g' "$AUDIO_BP"; echo "✅ Audio Android.bp patched!") || echo "⚠️ Audio Android.bp not found, skipping patch."
+
+AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
+if [ -f "$AUDIO_BP" ]; then
+    echo "🔧 Fixing Audio select type condition..."
+    sed -i 's/"true":/true:/g' "$AUDIO_BP"
+    echo "✅ Audio Android.bp patched!"
+else
+    echo "⚠️ Audio Android.bp not found, skipping patch."
+fi
 
 # Set up build environment
 source build/envsetup.sh
