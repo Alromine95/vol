@@ -52,15 +52,14 @@ git -C build/soong am --abort 2>/dev/null || true
 git -C system/sepolicy am --abort 2>/dev/null || true
 
 #Go fix
-
 SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
 
 if [ -f "$SOONG_FILE" ]; then
     echo "🔧 Re-patching execution_metrics.go safely..."
 
-    git checkout -- "$SOONG_FILE" 2>/dev/null  true
+    git checkout -- "$SOONG_FILE" 2>/dev/null || true
 
-    grep -q '"sort"' "$SOONG_FILE"  \
+    grep -q '"sort"' "$SOONG_FILE" || \
         sed -i '/^import (/a\    "sort"' "$SOONG_FILE"
 
     sed -i '/"maps"/d; /"slices"/d' "$SOONG_FILE"
@@ -76,7 +75,6 @@ fi
 mkdir -p device/xiaomi/blossom-kernel/modules
 
 #Fixing audio files
-
 AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
 if [ -f "$AUDIO_BP" ]; then
     echo "🔧 Fixing Audio select type condition..."
