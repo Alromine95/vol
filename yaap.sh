@@ -87,6 +87,10 @@ fi
 
 echo "=======audio fix done========="
 
+#fixing compilation path
+YAAP_GEN_BP="vendor/yaap/Android.bp"; [ -f "$YAAP_GEN_BP" ] && (echo "🔧 Fixing YAAP generator package context namespace..."; sed -i 's/pkgPath: "android\/soong\/generator"/pkgPath: "yaap\/soong\/generator"/g' "$YAAP_GEN_BP"; echo "✅ YAAP Generator package path fixed!") || echo "⚠️ YAAP Generator Android.bp not found, skipping."
+
+
 # Set up build environment
 source build/envsetup.sh
 echo "============="
