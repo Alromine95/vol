@@ -75,7 +75,14 @@ fi
 mkdir -p device/xiaomi/blossom-kernel/modules
 
 #Fixing audio files
-AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"; [ -f "$AUDIO_BP" ] && (echo "🔧 Fixing Audio select type condition..."; sed -i 's/"true":/true:/g' "$AUDIO_BP"; echo "✅ Audio Android.bp patched!") || echo "⚠️ Audio Android.bp not found, skipping patch."
+AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
+if [ -f "$AUDIO_BP" ]; then
+    echo "🔧 Fixing Audio select type condition..."
+    sed -i 's/"true":/true:/g' "$AUDIO_BP"
+    echo "✅ Audio Android.bp patched!"
+else
+    echo "⚠️ Audio Android.bp not found, skipping patch."
+fi
 
 # Set up build environment
 source build/envsetup.sh#!/bin/bash
