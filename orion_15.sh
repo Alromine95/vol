@@ -15,7 +15,7 @@ echo "Local manifest clone success"
 echo "============================"
 
 # Build Sync
-repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune --retry-fetches=5 -j$(nproc --all)
+repo sync -c -j4
 echo "============="
 echo "Sync success"
 echo "============="
@@ -28,8 +28,6 @@ echo "packages done"
 echo "============="
 
 # Export
-export BUILD_USERNAME=Qbhi
-export BUILD_HOSTNAME=crave
 export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 echo "======= Export Done ======"
 
@@ -41,4 +39,4 @@ echo "============="
 lunch orion_blossom-trunk_staging-userdebug
 
 # Build
-make orion -j$(nproc --all)
+make orion -j4
