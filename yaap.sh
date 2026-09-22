@@ -4,7 +4,7 @@ set -eE
 trap 'echo " FAILED at line $LINENO"; exit 1' ERR
 
 rm -rf .repo/local_manifests
-rm -rf .repo
+
 
 # repo init rom
 repo init -u https://github.com/yaap/manifest.git -b sixteen --depth=1 --git-lfs --groups=default,-mips,-x86,-darwin
