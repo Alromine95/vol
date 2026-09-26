@@ -16,7 +16,8 @@ repo sync -c --no-tags --no-clone-bundle --optimized-fetch -j4 --force-sync ;
 sed -i 's/android\.PathForSourceRelaxed(/android.PathForSource(/g' \
     vendor/arrow/build/soong/generator/generator.go
 
-
+sed -i '/^[[:space:]]*soong_config_variables:[[:space:]]*{/,/^[[:space:]]*},[[:space:]]*$/d' \
+    vendor/arrow/build/soong/Android.bp
 
 . build/envsetup.sh ;
 
