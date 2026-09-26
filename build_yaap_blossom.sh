@@ -17,13 +17,24 @@ git clone \
     -b lineage-21 \
     .repo/local_manifests
 
-repo sync \
-    -c \
-    --no-tags \
-    --no-clone-bundle \
-    --optimized-fetch \
-    -j4 \
-    --force-sync
+cat > .repo/local_manifests/arrow_vendor.xml <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <remote
+        name="arrow"
+        fetch="https://github.com/ArrowOS"
+        revision="arrow-14.0" />
+
+    <project
+        name="android_vendor_arrow"
+        path="vendor/arrow"
+        remote="arrow"
+        revision="arrow-14.0"
+        clone-depth="1" />
+</manifest>
+EOF
+
+repo sync -c --no-tags --no-clone-bundle --optimized-fetch -j4 --force-sync
 
 echo "========================================"
 echo "ArrowOS source sync complete"
