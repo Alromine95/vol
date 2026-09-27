@@ -1,4 +1,4 @@
-#1/bin/bash
+#!/bin/bash
 
 
 git config --global user.name "Abhinav"
