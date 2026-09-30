@@ -7,7 +7,7 @@ rm -rf .repo/local_manifests
 
 
 # repo init rom
-repo init -u https://github.com/yaap/manifest.git -b sixteen --depth=1 --git-lfs --groups=default,-mips,-x86,-darwin
+repo init -u https://github.com/yaap/manifest.git -b sixteen --depth=1 --git-lfs 
 echo "=================="
 echo "Repo init success"
 echo "=================="
@@ -70,9 +70,9 @@ if [ -f "$SOONG_FILE" ]; then
 
     sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' "$SOONG_FILE"
 
-    echo "✅ Fixed and patched successfully!"
+    echo " Fixed and patched successfully!"
 else
-    echo "⚠️ $SOONG_FILE not found, skipping Go patch."
+    echo " $SOONG_FILE not found, skipping Go patch."
 fi
 
 echo "=======soong fix done========"
@@ -83,11 +83,11 @@ mkdir -p device/xiaomi/blossom-kernel/modules
 #Fixing audio files
 AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
 if [ -f "$AUDIO_BP" ]; then
-    echo "🔧 Fixing Audio select type condition..."
+    echo " Fixing Audio select type condition..."
     sed -i 's/"true":/true:/g' "$AUDIO_BP"
-    echo "✅ Audio Android.bp patched!"
+    echo " Audio Android.bp patched!"
 else
-    echo "⚠️ Audio Android.bp not found, skipping patch."
+    echo " Audio Android.bp not found, skipping patch."
 fi
 
 echo "=======audio fix done========="
