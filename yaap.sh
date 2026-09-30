@@ -77,8 +77,7 @@ fi
 
 echo "=======soong fix done========"
 
-#Making kernel modules dir
-mkdir -p device/xiaomi/blossom-kernel/modules
+
 
 #Fixing audio files
 AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
