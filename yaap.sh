@@ -33,7 +33,7 @@ done
 
 /opt/crave/resync.sh;
 
-repo sync --force-sync --force-remove-dirty;
+repo sync -c --force-sync --force-remove-dirty;
 
 echo "============="
 echo "Sync success"
