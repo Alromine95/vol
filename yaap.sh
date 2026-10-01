@@ -18,6 +18,10 @@ echo "============================"
 echo "Local manifest clone success"
 echo "============================"
 
+
+repo forall -c 'git reset --hard && git clean -fd'
+
+
 # Build Sync
 
 
