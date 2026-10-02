@@ -111,4 +111,4 @@ echo "============="
 lunch yaap_blossom-bp2a-userdebug
 
 # Build
-m yaap -j$(nproc)
+m yaap 
