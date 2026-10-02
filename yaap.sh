@@ -101,7 +101,12 @@ fi
 
 echo "=======audio fix done========="
 
-rm -rf out/soong/.intermediates/external/icu
+git -C prebuilts/clang/host/linux-x86 status --short;
+
+repo sync prebuilts/clang/host/linux-x86 -d --force-sync;
+
+file prebuilts/clang/host/linux-x86/clang-r563880c/bin/clang++ && prebuilts/clang/host/linux-x86/clang-r563880c/bin/clang++ --version;
+
 
 # Set up build environment
 source build/envsetup.sh
