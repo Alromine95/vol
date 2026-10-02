@@ -101,6 +101,7 @@ fi
 
 echo "=======audio fix done========="
 
+rm -rf out/soong/.intermediates/external/icu
 
 # Set up build environment
 source build/envsetup.sh
@@ -110,4 +111,4 @@ echo "============="
 lunch yaap_blossom-bp2a-userdebug
 
 # Build
-m yaap
+m yaap -j4
