@@ -54,6 +54,7 @@ fi
 if [ -L "$CLANG_LINK" ]; then
     rm -f "$CLANG_LINK"
 elif [ -d "$CLANG_LINK" ]; then
+    rm -rf "${CLANG_LINK}.bak"
     mv "$CLANG_LINK" "${CLANG_LINK}.bak"
 fi
 
