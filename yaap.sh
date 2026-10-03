@@ -30,7 +30,6 @@ done
 # Remove old/broken Clang prebuilts
 for clang in \
     "prebuilts/clang/host/linux-x86/clang-r563880c" \
-    "prebuilts/clang/host/linux-x86/clang-r574158" \
     "prebuilts/clang/host/linux-x86/clang-r547379" \
     "prebuilts/clang/host/linux-x86/clang-3289846"; do
     if [ -d "$clang" ]; then
@@ -80,7 +79,7 @@ git -C system/sepolicy am --abort 2>/dev/null || true
 
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
-rm -rf vendor/yaap
+
 
 
 #Go fix
@@ -119,7 +118,7 @@ fi
 
 echo "=======audio fix done========="
 
-git clone https://github.com/Alromine95/vendor_yaap.git -b sixteen vendor/yaap
+
 
 # Use AOSP's newer Clang
 export LLVM_PREBUILTS_VERSION=clang-r596125
@@ -141,10 +140,7 @@ source build/envsetup.sh
 echo "============="
 
 # Lunch
-lunch yaap_blossom-bp4a-userdebug
-
-echo "Compiler:"
-get_build_var LLVM_PREBUILTS_VERSION
+lunch yaap_blossom-bp4a-user
 
 # Build
 m yaap 
