@@ -62,6 +62,7 @@ git -C system/sepolicy am --abort 2>/dev/null || true
 
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
+rm -rf vendor/yaap
 
 
 #Go fix
