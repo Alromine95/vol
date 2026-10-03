@@ -62,7 +62,6 @@ git -C system/sepolicy am --abort 2>/dev/null || true
 
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
-rm -rf vendor/yaap
 
 
 #Go fix
@@ -101,14 +100,13 @@ fi
 
 echo "=======audio fix done========="
 
-git clone https://github.com/Alromine95/vendor_yaap.git -b sixteen vendor/yaap
 
 # Set up build environment
 source build/envsetup.sh
 echo "============="
 
 # Lunch
-lunch yaap_blossom-bp2a-userdebug
+lunch yaap_blossom-bp4a-userdebug
 
 # Build
 m yaap 
