@@ -101,6 +101,7 @@ fi
 
 echo "=======audio fix done========="
 
+git clone https://github.com/Alromine95/vendor_yaap.git -b sixteen vendor/yaap
 
 # Set up build environment
 source build/envsetup.sh
