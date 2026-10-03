@@ -124,8 +124,16 @@ git clone https://github.com/Alromine95/vendor_yaap.git -b sixteen vendor/yaap
 # Use AOSP's newer Clang
 export LLVM_PREBUILTS_VERSION=clang-r596125
 
-rm -rf prebuilts/clang/host/linux-x86/clang-r563880c
+rm -f prebuilts/clang/host/linux-x86/clang-r563880c/clang-r563880c
 
+mv -- prebuilts/clang/host/linux-x86/clang-r563880c prebuilts/clang/host/linux-x86/clang-r563880c.bak
+
+ls -ld prebuilts/clang/host/linux-x86/clang-r563880c*
+
+ln -s clang-r574158 prebuilts/clang/host/linux-x86/clang-r563880c
+
+
+prebuilts/clang/host/linux-x86/clang-r563880c/bin/clang++ --version
 
 
 # Set up build environment
