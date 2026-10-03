@@ -50,6 +50,13 @@ echo "============="
 echo "Sync success"
 echo "============="
 
+echo "=== Clang directories ==="
+ls -1 prebuilts/clang/host/linux-x86/
+
+echo "=== Clang actually selected ==="
+grep -R "clang-r563880c\|clang-r596125" build/soong vendor/yaap device/xiaomi/blossom \
+    -n 2>/dev/null | head -50
+
 # Installing packages 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y 
 echo "============="
