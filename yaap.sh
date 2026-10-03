@@ -49,12 +49,32 @@ echo "============="
 echo "Sync success"
 echo "============="
 
-echo "=== Clang directories ==="
-ls -1 prebuilts/clang/host/linux-x86/
+# Fix broken Crave Clang wrapper
+CLANG_LINK="prebuilts/clang/host/linux-x86/clang-r563880c"
+CLANG_REAL="prebuilts/clang/host/linux-x86/clang-r574158"
 
-echo "=== Clang actually selected ==="
-grep -R "clang-r563880c\|clang-r596125" build/soong vendor/yaap device/xiaomi/blossom \
-    -n 2>/dev/null | head -50
+echo "========== Clang Fix =========="
+
+if [ ! -d "$CLANG_REAL" ]; then
+    echo "ERROR: $CLANG_REAL does not exist"
+    exit 1
+fi
+
+if [ -L "$CLANG_LINK" ]; then
+    rm -f "$CLANG_LINK"
+elif [ -d "$CLANG_LINK" ]; then
+    mv "$CLANG_LINK" "${CLANG_LINK}.bak"
+fi
+
+ln -s "$(basename "$CLANG_REAL")" "$CLANG_LINK"
+
+echo "Clang resolved to:"
+readlink -f "$CLANG_LINK"
+
+echo "Clang version:"
+"$CLANG_LINK/bin/clang++" --version
+
+echo "========== Clang Fix Done =========="
 
 # Installing packages 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y 
@@ -120,19 +140,7 @@ echo "=======audio fix done========="
 
 
 
-# Use AOSP's newer Clang
-export LLVM_PREBUILTS_VERSION=clang-r596125
 
-rm -f prebuilts/clang/host/linux-x86/clang-r563880c/clang-r563880c
-
-mv -- prebuilts/clang/host/linux-x86/clang-r563880c prebuilts/clang/host/linux-x86/clang-r563880c.bak
-
-ls -ld prebuilts/clang/host/linux-x86/clang-r563880c*
-
-ln -s clang-r574158 prebuilts/clang/host/linux-x86/clang-r563880c
-
-
-prebuilts/clang/host/linux-x86/clang-r563880c/bin/clang++ --version
 
 
 # Set up build environment
