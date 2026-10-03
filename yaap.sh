@@ -121,12 +121,22 @@ echo "=======audio fix done========="
 
 git clone https://github.com/Alromine95/vendor_yaap.git -b sixteen vendor/yaap
 
+# Use AOSP's newer Clang
+export LLVM_PREBUILTS_VERSION=clang-r596125
+
+rm -rf prebuilts/clang/host/linux-x86/clang-r563880c
+
+
+
 # Set up build environment
 source build/envsetup.sh
 echo "============="
 
 # Lunch
 lunch yaap_blossom-bp4a-userdebug
+
+echo "Compiler:"
+get_build_var LLVM_PREBUILTS_VERSION
 
 # Build
 m yaap 
