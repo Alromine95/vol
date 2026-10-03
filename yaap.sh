@@ -62,7 +62,7 @@ git -C system/sepolicy am --abort 2>/dev/null || true
 
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
-
+rm -rf vendor/yaap
 
 
 #Go fix
@@ -101,12 +101,7 @@ fi
 
 echo "=======audio fix done========="
 
-git -C prebuilts/clang/host/linux-x86 status --short;
-
-repo sync prebuilts/clang/host/linux-x86 -d --force-sync;
-
-file prebuilts/clang/host/linux-x86/clang-r563880c/bin/clang++ && prebuilts/clang/host/linux-x86/clang-r563880c/bin/clang++ --version;
-
+git clone https://github.com/Alromine95/vendor_yaap.git -b sixteen vendor/yaap
 
 # Set up build environment
 source build/envsetup.sh
