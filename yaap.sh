@@ -27,6 +27,17 @@ for toolchain in \
     fi
 done
 
+# Remove old/broken Clang prebuilts
+for clang in \
+    "prebuilts/clang/host/linux-x86/clang-r563880c" \
+    "prebuilts/clang/host/linux-x86/clang-r574158" \
+    "prebuilts/clang/host/linux-x86/clang-r547379" \
+    "prebuilts/clang/host/linux-x86/clang-3289846"; do
+    if [ -d "$clang" ]; then
+        echo "Removing old Clang: $clang"
+        rm -rf "$clang"
+    fi
+done
 
 # Build Sync
 
