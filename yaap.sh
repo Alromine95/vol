@@ -160,7 +160,7 @@ done
 # Prove clang can compile before starting the long build
 echo 'int main(){return 0;}' > /tmp/t.cpp
 set +e
-"$CLANG_DIR/clang-r563880c/bin/clang++" -v /tmp/t.cpp -o /tmp/t.out 2>&1
+"$CLANG_DIR/clang-r563880c/bin/clang++" -v -c /tmp/t.cpp -o /tmp/t.o 2>&1
 RC=$?
 set -e
 echo "clang exit code: $RC"
