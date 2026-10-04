@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eE
-trap 'echo " FAILED at line $LINENO"; exit 1' ERR
+trap 'echo " FAILED at ${BASH_SOURCE[0]}:${LINENO} -> $BASH_COMMAND"; exit 1' ERR
 
 rm -rf .repo/local_manifests
 
@@ -63,8 +63,7 @@ ln -s "$(basename "$CLANG_REAL")" "$CLANG_LINK"
 echo "Clang resolved to:"
 readlink -f "$CLANG_LINK"
 
-echo "Clang version:"
-"$CLANG_LINK/bin/clang++" --version
+
 
 echo "========== Clang Fix Done =========="
 
