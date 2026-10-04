@@ -140,7 +140,42 @@ source build/envsetup.sh
 echo "============="
 
 # Lunch
-lunch yaap_blossom-bp4a-user
+lunch yaap_blossom-bp4a-userdebug
+
+
+# ================= Clang guard (runs AFTER lunch) =================
+CLANG_DIR=prebuilts/clang/host/linux-x86
+CLANG_NAME=clang-r574158
+
+echo "=== Checking clang binaries ==="
+# Restore any empty (0-byte) binary in clang's bin dir from git
+for f in "$CLANG_DIR/$CLANG_NAME"/bin/*; do
+    if [ -f "$f" ] && [ ! -L "$f" ] && [ ! -s "$f" ]; then
+        rel="${f#$CLANG_DIR/}"
+        echo "Empty file found: $rel -> restoring from git"
+        rm -f "$f"
+        git -C "$CLANG_DIR" checkout -- "$rel" || true
+    fi
+done
+
+# Prove clang can compile before starting the long build
+echo 'int main(){return 0;}' > /tmp/t.cpp
+set +e
+"$CLANG_DIR/clang-r563880c/bin/clang++" -v /tmp/t.cpp -o /tmp/t.out 2>&1
+RC=$?
+set -e
+echo "clang exit code: $RC"
+
+if [ "$RC" -ne 0 ]; then
+    echo "=== CLANG STILL BROKEN ==="
+    readlink -f "$CLANG_DIR/clang-r563880c"
+    ls -la "$CLANG_DIR/$CLANG_NAME/bin" | head -30
+    file "$CLANG_DIR/$CLANG_NAME/bin/clang-21" "$CLANG_DIR/$CLANG_NAME/bin/clang++"
+    git -C "$CLANG_DIR" status --short | head -20
+    exit 1
+fi
+echo "=== CLANG OK, starting build ==="
+# ==================================================================
 
 # Build
 m yaap 
