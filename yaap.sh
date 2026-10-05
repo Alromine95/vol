@@ -40,32 +40,7 @@ echo "============="
 echo "Sync success"
 echo "============="
 
-# Fix broken Crave Clang wrapper
-CLANG_LINK="prebuilts/clang/host/linux-x86/clang-r563880c"
-CLANG_REAL="prebuilts/clang/host/linux-x86/clang-r574158"
 
-echo "========== Clang Fix =========="
-
-if [ ! -d "$CLANG_REAL" ]; then
-    echo "ERROR: $CLANG_REAL does not exist"
-    exit 1
-fi
-
-if [ -L "$CLANG_LINK" ]; then
-    rm -f "$CLANG_LINK"
-elif [ -d "$CLANG_LINK" ]; then
-    rm -rf "${CLANG_LINK}.bak"
-    mv "$CLANG_LINK" "${CLANG_LINK}.bak"
-fi
-
-ln -s "$(basename "$CLANG_REAL")" "$CLANG_LINK"
-
-echo "Clang resolved to:"
-readlink -f "$CLANG_LINK"
-
-
-
-echo "========== Clang Fix Done =========="
 
 # Installing packages 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y 
@@ -91,8 +66,6 @@ git -C system/sepolicy am --abort 2>/dev/null || true
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
 
-
-
 #Go fix
 SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
 
@@ -116,7 +89,6 @@ fi
 echo "=======soong fix done========"
 
 
-
 #Fixing audio files
 AUDIO_BP="hardware/interfaces/audio/common/all-versions/default/Android.bp"
 if [ -f "$AUDIO_BP" ]; then
@@ -129,52 +101,12 @@ fi
 
 echo "=======audio fix done========="
 
-
-
-
-
-
 # Set up build environment
 source build/envsetup.sh
 echo "============="
 
 # Lunch
 lunch yaap_blossom-bp4a-userdebug
-
-
-# ================= Clang guard (runs AFTER lunch) =================
-CLANG_DIR=prebuilts/clang/host/linux-x86
-CLANG_NAME=clang-r574158
-
-echo "=== Checking clang binaries ==="
-# Restore any empty (0-byte) binary in clang's bin dir from git
-for f in "$CLANG_DIR/$CLANG_NAME"/bin/*; do
-    if [ -f "$f" ] && [ ! -L "$f" ] && [ ! -s "$f" ]; then
-        rel="${f#$CLANG_DIR/}"
-        echo "Empty file found: $rel -> restoring from git"
-        rm -f "$f"
-        git -C "$CLANG_DIR" checkout -- "$rel" || true
-    fi
-done
-
-# Prove clang can compile before starting the long build
-echo 'int main(){return 0;}' > /tmp/t.cpp
-set +e
-"$CLANG_DIR/clang-r563880c/bin/clang++" -v -c /tmp/t.cpp -o /tmp/t.o 2>&1
-RC=$?
-set -e
-echo "clang exit code: $RC"
-
-if [ "$RC" -ne 0 ]; then
-    echo "=== CLANG STILL BROKEN ==="
-    readlink -f "$CLANG_DIR/clang-r563880c"
-    ls -la "$CLANG_DIR/$CLANG_NAME/bin" | head -30
-    file "$CLANG_DIR/$CLANG_NAME/bin/clang-21" "$CLANG_DIR/$CLANG_NAME/bin/clang++"
-    git -C "$CLANG_DIR" status --short | head -20
-    exit 1
-fi
-echo "=== CLANG OK, starting build ==="
-# ==================================================================
 
 # Build
 m yaap 
