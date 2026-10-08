@@ -103,6 +103,15 @@ fi
 
 echo "=======audio fix done========="
 
+
+
+# ===== NFC file_contexts duplicate fix =====
+BFC=device/xiaomi/blossom/sepolicy/vendor/file_contexts
+sed -i '\#^/dev/sec-nfc[[:space:]]#d' $BFC
+sed -i '\#nfc@1\\\.2-service\\\.samsung#d' $BFC
+echo "=======nfc fix done========="
+
+
 # Set up build environment
 source build/envsetup.sh
 echo "============="
