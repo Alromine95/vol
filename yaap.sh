@@ -19,13 +19,6 @@ echo "Local manifest clone success"
 echo "============================"
 
 
-for toolchain in \
-    "prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9" \
-    "prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9"; do
-    if [ -d "$toolchain" ]; then
-        rm -rf "$toolchain"
-    fi
-done
 
 
 
