@@ -109,9 +109,24 @@ rm -rf external/tinyxml
 # Bluetooth audio: drop the undefined immersive_out source from the routes
 sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space:]]*//g' device/xiaomi/blossom/configs/audio/audio_policy_configuration.xml
 
-# libtinyxml for audio.primary.mt6765
-[ -f external/tinyxml/Android.bp ] || git clone --depth=1 -b main https://android.googlesource.com/platform/external/tinyxml external/tinyxml || true
-grep -q 'name: "libtinyxml"' external/tinyxml/Android.bp || echo "WARNING: libtinyxml module not defined in external/tinyxml" || true
+
+# Download the original Android 11 tinyxml implementation
+TMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
+git clone --depth=1 \
+    --branch android-11.0.0_r19 \
+    https://android.googlesource.com/platform/external/tinyxml \
+    "$TMP_DIR/tinyxml"
+
+# Restore the sources and Soong build definition
+mkdir -p external/tinyxml
+git -C "$TMP_DIR/tinyxml" archive HEAD |
+    tar -x -C external/tinyxml
+
+# Verify that the missing module is now defined
+grep -n -A5 'name: "libtinyxml"' external/tinyxml/Android.bp
+
    
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
