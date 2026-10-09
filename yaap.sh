@@ -105,6 +105,13 @@ sed -i '\#nfc@1\\\.2-service\\\.samsung#d' $BFC
 echo "=======nfc fix done========="
 
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
+
+# Bluetooth audio: drop the undefined immersive_out source from the routes
+sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space:]]*//g' device/xiaomi/blossom/configs/audio/audio_policy_configuration.xml
+
+# libtinyxml for audio.primary.mt6765
+[ -f external/tinyxml/Android.bp ] || git clone --depth=1 -b main https://android.googlesource.com/platform/external/tinyxml external/tinyxml
+grep -q 'name: "libtinyxml"' external/tinyxml/Android.bp || echo "WARNING: libtinyxml module not defined in external/tinyxml" || true
    
 
 # Set up build environment
