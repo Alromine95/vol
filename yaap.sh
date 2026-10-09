@@ -104,6 +104,8 @@ sed -i '\#^/dev/sec-nfc[[:space:]]#d' $BFC
 sed -i '\#nfc@1\\\.2-service\\\.samsung#d' $BFC
 echo "=======nfc fix done========="
 
+rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
+   
 
 # Set up build environment
 source build/envsetup.sh
