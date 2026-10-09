@@ -113,6 +113,7 @@ sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space
 [ -f external/tinyxml/Android.bp ] || git clone --depth=1 -b main https://android.googlesource.com/platform/external/tinyxml external/tinyxml || true
 grep -q 'name: "libtinyxml"' external/tinyxml/Android.bp || echo "WARNING: libtinyxml module not defined in external/tinyxml" || true
    
+rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
 # Set up build environment
 source build/envsetup.sh
