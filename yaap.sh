@@ -105,7 +105,7 @@ sed -i '\#nfc@1\\\.2-service\\\.samsung#d' $BFC
 echo "=======nfc fix done========="
 
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
-
+rm -rf external/tinyxml
 # Bluetooth audio: drop the undefined immersive_out source from the routes
 sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space:]]*//g' device/xiaomi/blossom/configs/audio/audio_policy_configuration.xml
 
