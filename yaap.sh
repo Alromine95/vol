@@ -110,7 +110,7 @@ rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
 sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space:]]*//g' device/xiaomi/blossom/configs/audio/audio_policy_configuration.xml
 
 # libtinyxml for audio.primary.mt6765
-[ -f external/tinyxml/Android.bp ] || git clone --depth=1 -b main https://android.googlesource.com/platform/external/tinyxml external/tinyxml
+[ -f external/tinyxml/Android.bp ] || git clone --depth=1 -b main https://android.googlesource.com/platform/external/tinyxml external/tinyxml || true
 grep -q 'name: "libtinyxml"' external/tinyxml/Android.bp || echo "WARNING: libtinyxml module not defined in external/tinyxml" || true
    
 
