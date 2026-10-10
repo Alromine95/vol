@@ -7,7 +7,7 @@ rm -rf .repo/local_manifests
 
 
 # repo init rom
-repo init -u https://github.com/yaap/manifest.git -b sixteen --depth=1 --git-lfs 
+repo init -u  https://github.com/ascp-oss/manifest.gi -b sixteen-qpr2 --git-lfs --depth=1
 echo "=================="
 echo "Repo init success"
 echo "=================="
@@ -131,11 +131,11 @@ grep -n -A5 'name: "libtinyxml"' external/tinyxml/Android.bp
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
 # Set up build environment
-source build/envsetup.sh
+. build/envsetup.sh
 echo "============="
 
 # Lunch
-lunch yaap_blossom-bp4a-userdebug
+lunch ascp_blossom-bp4a-userdebug
 
 # Build
-m yaap 
+m bacon
