@@ -7,7 +7,7 @@ rm -rf .repo/local_manifests
 
 
 # repo init rom
-repo init -u  https://github.com/ascp-oss/manifest.gi -b sixteen-qpr2 --git-lfs --depth=1
+repo init -u  https://github.com/ascp-oss/manifest.git -b sixteen-qpr2 --git-lfs --depth=1
 echo "=================="
 echo "Repo init success"
 echo "=================="
