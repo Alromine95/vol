@@ -4,6 +4,7 @@ set -eE
 trap 'echo " FAILED at ${BASH_SOURCE[0]}:${LINENO} -> $BASH_COMMAND"; exit 1' ERR
 
 rm -rf .repo/local_manifests
+echo "=====local manifest cloned yay====="
 
 
 # repo init rom
@@ -23,13 +24,9 @@ echo "============================"
 
 
 # Build Sync
+/opt/crave/resync.sh || true;
 
-
-/opt/crave/resync.sh;
-
-repo sync -c --force-sync --force-remove-dirty;
-
-/opt/crave/resync.sh;
+/opt/crave/resync.sh || true;
 
 echo "============="
 echo "Sync success"
@@ -106,6 +103,7 @@ echo "=======nfc fix done========="
 
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
 rm -rf external/tinyxml
+
 # Bluetooth audio: drop the undefined immersive_out source from the routes
 sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space:]]*//g' device/xiaomi/blossom/configs/audio/audio_policy_configuration.xml
 
