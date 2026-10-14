@@ -55,9 +55,6 @@ git -C packages/modules/Bluetooth am --abort 2>/dev/null || true
 git -C build/soong am --abort 2>/dev/null || true
 git -C system/sepolicy am --abort 2>/dev/null || true
 
-#deleting extra generator
-rm -rf vendor/lineage/build/soong/generator
-
 #Go fix
 SOONG_FILE="build/soong/ui/execution_metrics/execution_metrics.go"
 
