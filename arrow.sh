@@ -45,7 +45,6 @@ git -C build/soong am --abort 2>/dev/null || true
 git -C system/sepolicy am --abort 2>/dev/null || true
 
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
-rm -rf external/tinyxml
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
 #Starting build environment
