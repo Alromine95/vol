@@ -11,7 +11,7 @@ echo "=====old local manifest deleted====="
 repo init -u https://github.com/VoltageOS/manifest.git -b 16.2 --git-lfs --depth=1 
 
 #clone local manifests
-git clone https://github.com/Alromine95/local_manifests_blossom.git -b lineage-21 .repo/local_manifests
+git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests
 echo "====My local manifests cloned===="
 
 
