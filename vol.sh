@@ -8,8 +8,7 @@ rm -rf .repo/local_manifests
 echo "=====old local manifest deleted====="
 
 #repo init rom source
-repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-14.0 --depth=1 
-echo "====Repo init success===="
+repo init -u https://github.com/VoltageOS/manifest.git -b 16.2 --git-lfs --depth=1 
 
 #clone local manifests
 git clone https://github.com/Alromine95/local_manifests_blossom.git -b lineage-21 .repo/local_manifests
