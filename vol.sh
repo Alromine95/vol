@@ -88,6 +88,7 @@ sed -i -E 's/,[[:space:]]*immersive_out//g; s/immersive_out[[:space:]]*,[[:space
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
+
 #Starting build environment
 . build/envsetup.sh
 
