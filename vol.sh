@@ -103,6 +103,6 @@ cd "$ROOT_DIR"
  brunch blossom
 
 # Upload rom zip
-wget -q -O upload.sh https://raw.githubusercontent.com/SiliconxLab/scripts/refs/heads/main/upload.sh
+wget -q -O upload.sh https://raw.githubusercontent.com/Alromine95/vol/refs/heads/main/upload.sh
 chmod +x upload.sh
 ./upload.sh blossom
