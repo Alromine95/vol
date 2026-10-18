@@ -38,7 +38,21 @@ export IGNORE_PATCH_ERRORS=true
 echo "==== Export Done ===="
 
 #clone priv keys repo
-git clone https://github.com/VoltageOS/vendor_voltage-priv_keys.git -b 16.2 vendor/voltage-priv/keys
+ROOT_DIR="/tmp/src/android"
+KEYS_DIR="$ROOT_DIR/vendor/voltage-priv/keys"
+
+cd "$ROOT_DIR"
+
+if [ ! -f "$KEYS_DIR/keys.sh" ]; then
+    rm -rf "$KEYS_DIR"
+    git clone https://github.com/VoltageOS/vendor_voltage-priv_keys.git -b 16.2 "$KEYS_DIR"
+fi
+
+if [ ! -f "$KEYS_DIR/platform.pk8" ]; then
+    cd "$KEYS_DIR" && chmod +x keys.sh && ./keys.sh
+fi
+
+cd "$ROOT_DIR"
 
 #Fixing patchs
 git -C frameworks/av am --abort 2>/dev/null || true
