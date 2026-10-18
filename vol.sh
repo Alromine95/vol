@@ -37,6 +37,9 @@ export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 export IGNORE_PATCH_ERRORS=true
 echo "==== Export Done ===="
 
+#clone priv keys repo
+git clone https://github.com/VoltageOS/vendor_voltage-priv_keys.git -b 16.2 vendor/voltage-priv/keys
+
 #Fixing patchs
 git -C frameworks/av am --abort 2>/dev/null || true
 git -C frameworks/base am --abort 2>/dev/null || true
