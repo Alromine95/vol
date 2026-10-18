@@ -101,3 +101,6 @@ cd "$ROOT_DIR"
 
 # Compilation started
  brunch blossom
+
+# Upload rom zip
+curl -sf https://raw.githubusercontent.com/Alromine95/vol/refs/heads/main/upload.sh | bash
