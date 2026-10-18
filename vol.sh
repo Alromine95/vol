@@ -103,15 +103,6 @@ echo "=======audio fix done========="
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
-#keys fix
-ROOT_DIR="/tmp/src/android"
-
-cd "$ROOT_DIR/vendor/voltage-priv/keys"
-./keys.sh
-cd "$ROOT_DIR"
-
-# optional check, fails early with a clear message
-[ -f build/envsetup.sh ] || { echo "Not in source root: $(pwd)"; exit 1; }
 
 #Starting build environment
 . build/envsetup.sh
