@@ -84,7 +84,7 @@ echo "=======audio fix done========="
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
-cd vendor/voltage-priv/keys && ./keys.sh && cd ../../..
+cd vendor/voltage-priv/keys && ./keys.sh && cd ../../.. || true;
 
 #Starting build environment
 . build/envsetup.sh
