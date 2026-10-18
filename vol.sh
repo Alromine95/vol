@@ -20,6 +20,8 @@ echo "====My local manifests cloned===="
 
 /opt/crave/resync.sh || true;
 
+/opt/crave/resync.sh || true;
+
 echo "============="
 echo "Sync success"
 echo "============="
