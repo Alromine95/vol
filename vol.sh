@@ -110,6 +110,7 @@ echo "=======audio fix done========="
 rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
 rm -rf out/soong/.intermediates/art/tools/signal_dumper/
 
+sed -i '4s|device/lineage/sepolicy/libperfmgr/sepolicy.mk|device/voltage/sepolicy/libperfmgr/sepolicy.mk|' device/mediatek/sepolicy_vndr/SEPolicy.mk
 
 #Starting build environment
 . build/envsetup.sh
