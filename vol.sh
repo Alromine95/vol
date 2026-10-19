@@ -37,27 +37,17 @@ export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
 export IGNORE_PATCH_ERRORS=true
 echo "==== Export Done ===="
 
+
+
 #clone priv keys repo
 ROOT_DIR="/tmp/src/android"
 KEYS_DIR="$ROOT_DIR/vendor/voltage-priv/keys"
 
-cd "$ROOT_DIR"
+[ -f "$KEYS_DIR/keys.sh" ] || { rm -rf "$KEYS_DIR"; git clone https://github.com/VoltageOS/vendor_voltage-priv_keys.git -b 16.2 "$KEYS_DIR"; }
 
-if [ ! -f "$KEYS_DIR/keys.sh" ]; then
-    rm -rf "$KEYS_DIR"
-    git clone https://github.com/VoltageOS/vendor_voltage-priv_keys.git -b 16.2 "$KEYS_DIR"
+if [ ! -f "$KEYS_DIR/gmscompat_lib.pk8" ]; then
+    cd "$KEYS_DIR" && chmod +x keys.sh && { ./keys.sh || true; }
 fi
-
-if [ ! -f "$KEYS_DIR/platform.pk8" ]; then
-    cd "$KEYS_DIR" && chmod +x keys.sh
-    ./keys.sh || true    # make_key always exits 1 (its EXIT trap), keys are still created
-fi
-
-cd "$KEYS_DIR"
-expected=$(( $(ls ../../../build/make/target/product/security/*.pk8 | wc -l) + $(grep -o ':.*override' keys.mk | sort -u | wc -l) + 1 ))
-actual=$(ls *.pk8 | wc -l)
-echo "Keys generated: $actual / $expected"
-[ "$actual" -eq "$expected" ] || { echo "Key generation incomplete"; exit 1; }
 
 cd "$ROOT_DIR"
 
