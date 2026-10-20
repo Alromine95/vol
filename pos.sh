@@ -18,15 +18,13 @@ echo "============================"
 echo "Local manifest clone success"
 echo "============================"
 
+# Build Sync
+/opt/crave/resync.sh || true;
 
+/opt/crave/resync.sh || true;
 
+/opt/crave/resync.sh || true;
 
-
-# Build sync
-
-repo sync -j16 ;
-
-repo sync -j5 --fail-fast
 
 echo "============="
 echo "Sync success"
@@ -89,30 +87,6 @@ PY
 
 sed -n '1,20p' "$FILE"
 
-#fixing build errors
-
-cd ~/pos
-
-CLANG_REPO="prebuilts/clang/host/linux-x86"
-LIB="clang-r530567/lib/libclang.so"
-
-# Restore the library from the existing Git checkout if tracked
-if git -C "$CLANG_REPO" cat-file -e "HEAD:$LIB" 2>/dev/null; then
-    git -C "$CLANG_REPO" restore --source=HEAD -- "$LIB"
-fi
-
-# If the file is still missing, sync only the Clang prebuilt project
-if [ ! -s "$CLANG_REPO/$LIB" ]; then
-    repo sync -c "$CLANG_REPO"
-fi
-
-# Verify the library is actually present
-if [ -s "$CLANG_REPO/$LIB" ]; then
-    ls -lh "$CLANG_REPO/$LIB"
-    file "$CLANG_REPO/$LIB"
-else
-    echo "ERROR: libclang.so is still missing"
-fi
 
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
