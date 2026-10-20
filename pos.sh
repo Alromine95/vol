@@ -133,3 +133,8 @@ lunch aosp_blossom-bp1a-userdebug
 
 # Build
 m bacon
+
+# Upload rom zip
+wget -q -O upload.sh https://raw.githubusercontent.com/Alromine95/vol/refs/heads/main/upload.sh
+chmod +x upload.sh
+./upload.sh blossom
