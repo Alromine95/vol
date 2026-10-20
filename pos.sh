@@ -91,9 +91,7 @@ sed -n '1,20p' "$FILE"
 #deleting extra generator
 rm -rf vendor/lineage/build/soong/generator
 
-rm -rf out/soong/.intermediates/external/perfetto/perfetto_trace_protos/
-   
-rm -rf out/soong/.intermediates/art/tools/signal_dumper/
+find hardware/qcom -xtype l -name Android.bp -delete
 
 # Set up build environment
 . build/envsetup.sh
