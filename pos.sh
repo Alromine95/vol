@@ -53,8 +53,6 @@ git -C packages/modules/Bluetooth am --abort 2>/dev/null || true
 git -C build/soong am --abort 2>/dev/null || true
 git -C system/sepolicy am --abort 2>/dev/null || true
 
-cd ~/pos
-
 FILE="hardware/qcom-caf/common/os_pickup_aosp.mk"
 
 cp -a "$FILE" "$FILE.bak"
