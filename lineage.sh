@@ -68,6 +68,14 @@ fi
 export BUILD_USERNAME=Abhinav
 export BUILD_HOSTNAME=foss
 
+cat >> device/xiaomi/blossom/device.mk <<'EOF'
+
+# disable window blur (saves GPU/RAM on Go)
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.surface_flinger.supports_background_blur=0 \
+    persist.sys.sf.disable_blurs=1
+EOF
+
 rm -rf build/soong/fsgen;
 
 echo "build started!..."
