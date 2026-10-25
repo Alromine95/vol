@@ -46,39 +46,39 @@ echo "======= Export Done ======"
 
 rm -rf build/soong/fsgen;
 
-sed -i 's/android\.PathForSourceRelaxed/android.PathForSource/g' vendor/arrow/build/soong/generator/generator.go && sed -n '226p' vendor/arrow/build/soong/generator/generator.go
+sed -i 's/android\.PathForSourceRelaxed/android.PathForSource/g' vendor/arrow/build/soong/generator/generator.go && sed -n '226p' vendor/arrow/build/soong/generator/generator.go || true;
 
-sed -i 's/"export_cflags"/"cflags"/; s/^\( *\)export_cflags:/\1cflags:/' vendor/arrow/build/soong/Android.bp && grep -n "export_cflags\|cflags" vendor/arrow/build/soong/Android.bp | head -5
+sed -i 's/"export_cflags"/"cflags"/; s/^\( *\)export_cflags:/\1cflags:/' vendor/arrow/build/soong/Android.bp && grep -n "export_cflags\|cflags" vendor/arrow/build/soong/Android.bp | head -5 || true;
 
-find vendor/qcom/opensource/dataservices -name Android.bp -exec mv {} {}.bak \
+find vendor/qcom/opensource/dataservices -name Android.bp -exec mv {} {}.bak \ || true; 
 
-find hardware/qcom-caf/bootctrl -name Android.bp -exec mv {} {}.bak \;
+find hardware/qcom-caf/bootctrl -name Android.bp -exec mv {} {}.bak \ || true;
 
-find hardware/qcom-caf -name Android.bp -exec mv {} {}.bak \;
+find hardware/qcom-caf -name Android.bp -exec mv {} {}.bak \ || true;
 
-grep -rn "SOONG_NAMESPACES" device/xiaomi/blossom vendor/xiaomi/blossom | head; grep -q "PRODUCT_SOONG_NAMESPACES.*vendor/xiaomi/blossom" device/xiaomi/blossom/device.mk || echo 'PRODUCT_SOONG_NAMESPACES += vendor/xiaomi/blossom' >> device/xiaomi/blossom/device.mk; tail -3 device/xiaomi/blossom/device.mk
+grep -rn "SOONG_NAMESPACES" device/xiaomi/blossom vendor/xiaomi/blossom | head; grep -q "PRODUCT_SOONG_NAMESPACES.*vendor/xiaomi/blossom" device/xiaomi/blossom/device.mk || echo 'PRODUCT_SOONG_NAMESPACES += vendor/xiaomi/blossom' >> device/xiaomi/blossom/device.mk; tail -3 device/xiaomi/blossom/device.mk || true;
 
-sed -n '508,520p' device/xiaomi/blossom/device.mk; echo ---; sed -n '1,14p' vendor/xiaomi/blossom/blossom-vendor.mk; echo ---; head -12 vendor/xiaomi/blossom/Android.bp
+sed -n '508,520p' device/xiaomi/blossom/device.mk; echo ---; sed -n '1,14p' vendor/xiaomi/blossom/blossom-vendor.mk; echo ---; head -12 vendor/xiaomi/blossom/Android.bp || true;
 
-sed -i '0,/^\tr\.sortedNamespaces\.add(namespace)$/s//\tif namespace.exportToKati {\n\t\tr.rootNamespace.visibleNamespaces = append(r.rootNamespace.visibleNamespaces, namespace)\n\t}\n\tr.sortedNamespaces.add(namespace)/' build/soong/android/namespace.go && sed -n '158,166p' build/soong/android/namespace.go
+sed -i '0,/^\tr\.sortedNamespaces\.add(namespace)$/s//\tif namespace.exportToKati {\n\t\tr.rootNamespace.visibleNamespaces = append(r.rootNamespace.visibleNamespaces, namespace)\n\t}\n\tr.sortedNamespaces.add(namespace)/' build/soong/android/namespace.go && sed -n '158,166p' build/soong/android/namespace.go || true;
 
-grep -q BoardConfigSoong device/xiaomi/blossom/BoardConfig.mk || echo 'include vendor/arrow/config/BoardConfigSoong.mk' >> device/xiaomi/blossom/BoardConfig.mk; tail -2 device/xiaomi/blossom/BoardConfig.mk
+grep -q BoardConfigSoong device/xiaomi/blossom/BoardConfig.mk || echo 'include vendor/arrow/config/BoardConfigSoong.mk' >> device/xiaomi/blossom/BoardConfig.mk; tail -2 device/xiaomi/blossom/BoardConfig.mk || true;
 
-find hardware/qcom-caf -name Android.bp -exec sed -i '/^[[:space:]]*clang:[[:space:]]*true,\{0,1\}[[:space:]]*$/d' {} + && grep -rn "clang:" hardware/qcom-caf --include=Android.bp | head -3
+find hardware/qcom-caf -name Android.bp -exec sed -i '/^[[:space:]]*clang:[[:space:]]*true,\{0,1\}[[:space:]]*$/d' {} + && grep -rn "clang:" hardware/qcom-caf --include=Android.bp | head -3 || true; 
 
-grep -rl --include=Android.bp -E '^[[:space:]]*clang:' hardware vendor | xargs -r sed -i -E '/^[[:space:]]*clang:[[:space:]]*true,?[[:space:]]*$/d'; grep -rn --include=Android.bp -E '^[[:space:]]*clang:' hardware vendor | head -5
+grep -rl --include=Android.bp -E '^[[:space:]]*clang:' hardware vendor | xargs -r sed -i -E '/^[[:space:]]*clang:[[:space:]]*true,?[[:space:]]*$/d'; grep -rn --include=Android.bp -E '^[[:space:]]*clang:' hardware vendor | head -5 || true; 
 
-mv hardware/qcom/wlan/Android.mk hardware/qcom/wlan/Android.mk.bak
+mv hardware/qcom/wlan/Android.mk hardware/qcom/wlan/Android.mk.bak || true;
 
-find hardware/qcom/wlan -name Android.mk -exec mv {} {}.bak \;
+find hardware/qcom/wlan -name Android.mk -exec mv {} {}.bak \; || true;
 
-sed -i 's/\$(MD5SUM)/md5sum/' vendor/arrow/build/tasks/bacon.mk && sed -n '12p' vendor/arrow/build/tasks/bacon.mk
+sed -i 's/\$(MD5SUM)/md5sum/' vendor/arrow/build/tasks/bacon.mk && sed -n '12p' vendor/arrow/build/tasks/bacon.mk || true; 
 
-grep -rl --include=*.mk 'MD5SUM' vendor/arrow | xargs -r sed -i 's/\$(MD5SUM)/md5sum/g'; grep -rn --include=*.mk 'MD5SUM' vendor/arrow | head -3
+grep -rl --include=*.mk 'MD5SUM' vendor/arrow | xargs -r sed -i 's/\$(MD5SUM)/md5sum/g'; grep -rn --include=*.mk 'MD5SUM' vendor/arrow | head -3 || true; 
 
-sed -i '0,/^#include/s//#include <android-base\/unique_fd.h>\n#include/' device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp && head -12 device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp
+sed -i '0,/^#include/s//#include <android-base\/unique_fd.h>\n#include/' device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp && head -12 device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp || true; 
 
-printf '// Android 14: libui already exports these symbols; empty shim keeps blobs that need libshim_ui loading.\n' > device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp && cat device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp
+printf '// Android 14: libui already exports these symbols; empty shim keeps blobs that need libshim_ui loading.\n' > device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp && cat device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp || true;
 
 # Back up the policy file first
 cp device/xiaomi/blossom/sepolicy/vendor/platform_app.te \
@@ -135,6 +135,6 @@ PY
 
 . build/envsetup.sh
 
-lunch arrow_blossom-eng
+lunch arrow_blossom-userdebug
 
 m bacon
