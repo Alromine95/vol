@@ -52,10 +52,6 @@ sed -i 's/"export_cflags"/"cflags"/; s/^\( *\)export_cflags:/\1cflags:/' vendor/
 
 find vendor/qcom/opensource/dataservices hardware/qcom-caf/bootctrl -name Android.bp -exec mv {} {}.bak \; || true
 
-find hardware/qcom-caf/bootctrl -name Android.bp -exec mv {} {}.bak \ || true;
-
-find hardware/qcom-caf -name Android.bp -exec mv {} {}.bak \ || true;
-
 grep -rn "SOONG_NAMESPACES" device/xiaomi/blossom vendor/xiaomi/blossom | head; grep -q "PRODUCT_SOONG_NAMESPACES.*vendor/xiaomi/blossom" device/xiaomi/blossom/device.mk || echo 'PRODUCT_SOONG_NAMESPACES += vendor/xiaomi/blossom' >> device/xiaomi/blossom/device.mk; tail -3 device/xiaomi/blossom/device.mk || true;
 
 sed -n '508,520p' device/xiaomi/blossom/device.mk; echo ---; sed -n '1,14p' vendor/xiaomi/blossom/blossom-vendor.mk; echo ---; head -12 vendor/xiaomi/blossom/Android.bp || true;
