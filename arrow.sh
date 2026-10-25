@@ -15,7 +15,12 @@ echo "Local manifest clone success"
 echo "============================"
 
 # Build Sync
-repo sync -c --no-clone-bundle -j12
+/opt/crave/resync.sh || true;
+
+/opt/crave/resync.sh || true;
+
+/opt/crave/resync.sh || true;
+
 echo "============="
 echo "Sync success"
 echo "============="
