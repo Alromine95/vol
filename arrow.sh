@@ -50,7 +50,7 @@ sed -i 's/android\.PathForSourceRelaxed/android.PathForSource/g' vendor/arrow/bu
 
 sed -i 's/"export_cflags"/"cflags"/; s/^\( *\)export_cflags:/\1cflags:/' vendor/arrow/build/soong/Android.bp && grep -n "export_cflags\|cflags" vendor/arrow/build/soong/Android.bp | head -5 || true;
 
-find vendor/qcom/opensource/dataservices -name Android.bp -exec mv {} {}.bak \ || true; 
+find vendor/qcom/opensource/dataservices hardware/qcom-caf/bootctrl -name Android.bp -exec mv {} {}.bak \; || true
 
 find hardware/qcom-caf/bootctrl -name Android.bp -exec mv {} {}.bak \ || true;
 
