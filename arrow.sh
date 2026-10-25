@@ -70,6 +70,23 @@ sed -i 's/\$(MD5SUM)/md5sum/' vendor/arrow/build/tasks/bacon.mk && sed -n '12p' 
 
 grep -rl --include=*.mk 'MD5SUM' vendor/arrow | xargs -r sed -i 's/\$(MD5SUM)/md5sum/g'; grep -rn --include=*.mk 'MD5SUM' vendor/arrow | head -3
 
+# Back up the device configuration first
+cp -a device/xiaomi/blossom/BoardConfig.mk \
+      device/xiaomi/blossom/BoardConfig.mk.bak
+
+# Replace an existing assignment, or add one if missing
+if grep -qE '^KERNEL_MAKE_CMD[[:space:]]*[:?+]?=' \
+    device/xiaomi/blossom/BoardConfig.mk; then
+    sed -i -E \
+      's|^KERNEL_MAKE_CMD[[:space:]]*[:?+]?=.*|KERNEL_MAKE_CMD := make|' \
+      device/xiaomi/blossom/BoardConfig.mk
+else
+    sed -i '/^# Kernel$/a KERNEL_MAKE_CMD := make' \
+      device/xiaomi/blossom/BoardConfig.mk
+fi
+
+grep -n 'KERNEL_MAKE_CMD' device/xiaomi/blossom/BoardConfig.mk
+
 sed -i '0,/^#include/s//#include <android-base\/unique_fd.h>\n#include/' device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp && head -12 device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp
 
 printf '// Android 14: libui already exports these symbols; empty shim keeps blobs that need libshim_ui loading.\n' > device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp && cat device/xiaomi/blossom/libshims/libshim_ui/GraphicBufferMapper.cpp
