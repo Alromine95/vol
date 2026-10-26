@@ -133,6 +133,6 @@ PY
 
 . build/envsetup.sh
 
-lunch arrow_blossom-userdebug
+lunch arrow_blossom-eng
 
 m bacon
