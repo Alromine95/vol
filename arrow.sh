@@ -21,6 +21,8 @@ echo "============================"
 
 /opt/crave/resync.sh || true;
 
+git -C external/chromium-webview checkout -f HEAD; [ -s external/chromium-webview/prebuilt/arm64/webview.apk ] || { rm -rf external/chromium-webview; /opt/crave/resync.sh || true; git -C external/chromium-webview lfs pull || true; }; ls -la external/chromium-webview/prebuilt/arm64 ;
+
 echo "============="
 echo "Sync success"
 echo "============="
