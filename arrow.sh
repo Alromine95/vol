@@ -131,6 +131,9 @@ print(f"Moved {len(files)} backup files outside the resource directory.")
 print(f"Backups preserved in: {backup_root}")
 PY
 
+mkdir -p device/xiaomi/blossom-kernel/modules
+
+
 . build/envsetup.sh
 
 lunch arrow_blossom-eng
