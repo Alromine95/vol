@@ -27,10 +27,18 @@ echo "==================="
 
 sudo apt-get update && sudo apt-get install patchelf coreutils -y;
 
-
-export BUILD_USERNAME=Abhinav
-export BUILD_HOSTNAME=foss
-
+# Export
+export BUILD_USERNAME=Qbhi
+export BUILD_HOSTNAME=crave
+export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
+export BUILD_BROKEN_PREBUILT_ELF_FILES=true
+export BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES=true
+export BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE=true
+export BUILD_BROKEN_DUP_RULES=true
+export ALLOW_MISSING_DEPENDENCIES=true
+export BUILD_BROKEN_USES_BUILD_COPY_HEADERS=true
+export WITH_ADB_INSECURE=true
+echo "======= Export Done ======"
 
 rm -rf build/soong/fsgen;
 
