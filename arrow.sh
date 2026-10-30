@@ -15,13 +15,9 @@ echo "Local manifest clone success"
 echo "============================"
 
 # Build Sync
-/opt/crave/resync.sh || true;
+repo sync -j12;
 
-/opt/crave/resync.sh || true;
-
-/opt/crave/resync.sh || true;
-
-git -C external/chromium-webview checkout -f HEAD; [ -s external/chromium-webview/prebuilt/arm64/webview.apk ] || { rm -rf external/chromium-webview; /opt/crave/resync.sh || true; git -C external/chromium-webview lfs pull || true; }; ls -la external/chromium-webview/prebuilt/arm64 ;
+repo sync -j5 --fail-fast;
 
 echo "============="
 echo "Sync success"
