@@ -2,6 +2,9 @@
 
 rm -rf .repo/local_manifests/
 
+git config --global user.name "Abhinav"
+git config --global user.email "abhinav@gmail.com"
+
 # repo init rom
 repo init -u https://github.com/ProtonPlus-ORG/manifest -b tm --depth=1
 echo "=================="
