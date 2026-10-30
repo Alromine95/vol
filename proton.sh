@@ -5,18 +5,6 @@ rm -rf .repo/local_manifests/
 git config --global user.name "Abhinav"
 git config --global user.email "abhinav@gmail.com"
 
-# repo init rom
-repo init -u https://github.com/ProtonPlus-ORG/manifest -b tm --depth=1
-echo "=================="
-echo "Repo init success"
-echo "=================="
-
-# Local manifests
-git clone https://github.com/AsTechpro20/local_manifests_blossom.git -b lineage-20 .repo/local_manifests
-echo "============================"
-echo "Local manifest clone success"
-echo "============================"
-
 # Build Sync
 repo sync -j$(nproc --all) --force-sync --no-tags --no-clone-bundle --prune --optimized-fetch
 echo "============="
