@@ -136,6 +136,6 @@ mkdir -p device/xiaomi/blossom-kernel/modules
 
 . build/envsetup.sh
 
-lunch arrow_blossom-eng
+lunch arrow_blossom-userdebug
 
 m bacon
