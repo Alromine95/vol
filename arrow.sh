@@ -9,7 +9,7 @@ echo "Repo init success"
 echo "=================="
 
 # Local manifests
-git clone https://github.com/Alromine95/local_manifests_blossom.git -b patch .repo/local_manifests
+git clone https://github.com/Alromine95/rom-sources.git -b main .repo/local_manifests
 echo "============================"
 echo "Local manifest clone success"
 echo "============================"
