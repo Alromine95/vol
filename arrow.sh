@@ -33,6 +33,10 @@ export BUILD_HOSTNAME=foss
 rm -rf build/soong/fsgen;
 
 
+#deleting extra generator
+rm -rf vendor/lineage/build/soong/generator
+
+
 echo "build started!..."
 
 source build/envsetup.sh ;
