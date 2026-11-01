@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -eE
-trap 'echo " FAILED at ${BASH_SOURCE[0]}:${LINENO} -> $BASH_COMMAND"; exit 1' ERR
 
 rm -rf .repo/local_manifests
 
