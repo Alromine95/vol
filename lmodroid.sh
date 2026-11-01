@@ -5,16 +5,14 @@ echo "removing local manifests"
 echo "========================"
 
 rm -rf .repo/local_manifests;
-rm -rf .repo;
-rm -rf out/soong/.intermediates/system/sepolicy;
 
 echo "====================="
 echo "      Repo init      "
 echo "====================="
 
-repo init -u https://git.libremobileos.com/LMODroid/manifest.git -b sixteen-qpr2 --depth=1 --git-lfs;
+repo init -u https://git.libremobileos.com/LMODroid/manifest.git -b fourteen-qpr1 --git-lfs --depth=1
 
-git clone https://github.com/Alromine95/Local-manifest.git -b main .repo/local_manifests;
+git clone https://github.com/Alromine95/rom-sources.git -b main .repo/local_manifests;
 
 echo "==================="
 echo "     repo sync     "
@@ -34,27 +32,9 @@ export BUILD_HOSTNAME=foss
 
 rm -rf build/soong/fsgen;
 
-# 2. Patch Go 1.23+ incompatibilities in execution_metrics.go
-sed -i 's/"golang.org\/x\/exp\/maps"/& \n\t"sort"/' build/soong/ui/execution_metrics/execution_metrics.go
-sed -i 's/slices\.Sorted(maps\.Keys(\([^)]*\)))/func() []string { keys := make([]string, 0, len(\1)); for k := range \1 { keys = append(keys, k) }; sort.Strings(keys); return keys }()/' build/soong/ui/execution_metrics/execution_metrics.go
-
 
 echo "build started!..."
 
 source build/envsetup.sh ;
-lunch lineage_blossom-bp4a-userdebug ;
+lunch lmodroid_blossom-userdebug ;
 m bacon ;
-
-echo "Upload to GoFile will be started..."
-
-ZIP=$(find out/target/product/blossom -maxdepth 1 -type f -name "*.zip" | head -n 1)
-
-if [ -n "$ZIP" ]; then
-    echo "Uploading $ZIP..."
-    wget https://raw.githubusercontent.com/lordgaruda/GoFile-Upload/refs/heads/master/upload.sh
-    chmod +x upload.sh
-    ./upload.sh "$ZIP"
-else
-    echo "No ROM ZIP found!"
-    exit 1
-fi
