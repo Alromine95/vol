@@ -23,11 +23,9 @@ echo "============================"
 # Build Sync
 
 
-/opt/crave/resync.sh;
+repo sync -j12;
 
-repo sync -c --force-sync --force-remove-dirty;
-
-/opt/crave/resync.sh;
+repo sync -c -j5 --fail-fast
 
 echo "============="
 echo "Sync success"
