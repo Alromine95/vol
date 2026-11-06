@@ -12,7 +12,7 @@ echo "====================="
 echo "      Repo init      "
 echo "====================="
 
-repo init -u https://github.com/LineageOS/android.git -b lineage-24.0 --depth=1 --git-lfs;
+repo init -u https://github.com/LineageOS/android.git -b lineage-23.0 --depth=1 --git-lfs;
 
 git clone https://github.com/Alromine95/local-manifest-tornado.git -b main .repo/local_manifests;
 
@@ -20,9 +20,9 @@ echo "==================="
 echo "     repo sync     "
 echo "==================="
 
-/opt/crave/resync.sh;
+repo sync -j12;
 
-sudo apt-get update && sudo apt-get install patchelf coreutils -y;
+repo sync -j5 --fail-fast
 
 
 export BUILD_USERNAME=Abhinav
@@ -33,7 +33,7 @@ rm -rf build/soong/fsgen;
 echo "build started!..."
 
 . build/envsetup.sh;
-lunch lineage_tornado-bp4a-userdebug;
+lunch lineage_tornado-bp2a-userdebug;
 m bacon 
 
 echo "Upload to GoFile will be started..."
