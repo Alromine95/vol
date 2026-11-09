@@ -11,7 +11,7 @@ echo "Repo init success"
 echo "=================="
 
 # Local manifests
-git clone https://github.com/Alromine95/dt.git -b main .repo/local_manifests
+git clone https://github.com/Alromine95/dt.git -b 17.0 .repo/local_manifests
 echo "============================"
 echo "Local manifest clone success"
 echo "============================"
@@ -25,7 +25,7 @@ echo "============================"
 
 repo sync -j12;
 
-repo sync -c -j5 --fail-fast
+repo sync -j5 --fail-fast
 
 echo "============="
 echo "Sync success"
