@@ -18,7 +18,7 @@ echo "============================"
 
 
 # Build Sync
-repo sync -j$(nproc) || true ;
+repo sync -j192 || true ;
 
 repo sync -j5 --fail-fast || true ;
 
@@ -53,4 +53,4 @@ rm -rf vendor/lineage/build/soong/generator
 
 # Set up build environment
 source build/envsetup.sh
-lunch yaap_blossom-user && m yaap
+lunch yaap_blossom-user && m yaap -j192
