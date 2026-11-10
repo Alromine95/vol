@@ -27,13 +27,6 @@ echo "Sync success"
 echo "============="
 
 
-
-# Installing packages 
-sudo apt-get update && sudo apt-get install patchelf coreutils -y 
-echo "============="
-echo "packages done"
-echo "============="
-
 # Export
 export BUILD_USERNAME=Qbhi
 export BUILD_HOSTNAME=crave
