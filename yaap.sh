@@ -18,9 +18,9 @@ echo "============================"
 
 
 # Build Sync
-repo sync -j12;
+repo sync -j12 || true ;
 
-repo sync -j5 --fail-fast;
+repo sync -j5 --fail-fast || true ;
 
 echo "============="
 echo "Sync success"
