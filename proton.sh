@@ -2,8 +2,6 @@
 
 rm -rf .repo/local_manifests/
 
-git config --global user.name "Abhinav"
-git config --global user.email "abhinav@gmail.com"
 
 sudo apt-get update
           sudo apt-get install -y \
