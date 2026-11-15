@@ -55,20 +55,59 @@ log "Installing dependencies"
 
 sudo apt-get update
 
+# Enable Ubuntu Universe if running Ubuntu.
+if [[ -r /etc/os-release ]]; then
+    . /etc/os-release
+
+    if [[ "$ID" == "ubuntu" ]]; then
+        if ! command -v add-apt-repository >/dev/null 2>&1; then
+            sudo apt-get install -y software-properties-common
+        fi
+
+        sudo add-apt-repository -y universe
+        sudo apt-get update
+    fi
+fi
+
 sudo apt-get install -y \
-    btrfs-progs git aria2 python3 python-is-python3 bc bison \
-    build-essential curl flex g++-multilib gcc-multilib gnupg \
-    gperf imagemagick lib32ncurses-dev lib32readline-dev \
-    lib32z1-dev liblz4-tool libncurses-dev libsdl1.2-dev \
-    libssl-dev libxml2 libxml2-utils lzop pngcrush rsync \
-    schedtool squashfs-tools xsltproc zip zlib1g-dev unzip
+    btrfs-progs \
+    git \
+    aria2 \
+    python3 \
+    python-is-python3 \
+    bc \
+    bison \
+    build-essential \
+    curl \
+    flex \
+    g++-multilib \
+    gcc-multilib \
+    gnupg \
+    gperf \
+    imagemagick \
+    lib32ncurses-dev \
+    lib32readline-dev \
+    lib32z1-dev \
+    liblz4-dev \
+    lz4 \
+    libncurses-dev \
+    libsdl1.2-dev \
+    libssl-dev \
+    libxml2-utils \
+    rsync \
+    lzop \
+    pngcrush \
+    schedtool \
+    squashfs-tools \
+    xsltproc \
+    zip \
+    zlib1g-dev \
+    unzip
 
-log "Installing Android repo tool"
-
-sudo install -d /usr/local/bin
-
-curl -fsSL https://storage.googleapis.com/git-repo-downloads/repo \
-    | sudo tee /usr/local/bin/repo >/dev/null
+# Install repo tool
+sudo curl -fsSL \
+    https://storage.googleapis.com/git-repo-downloads/repo \
+    -o /usr/local/bin/repo
 
 sudo chmod 0755 /usr/local/bin/repo
 
@@ -76,6 +115,7 @@ repo --version
 
 git config --global user.name "$GIT_NAME"
 git config --global user.email "$GIT_EMAIL"
+
 
 # ---------------------------- 2. Workspace + swap ----------------------------
 
